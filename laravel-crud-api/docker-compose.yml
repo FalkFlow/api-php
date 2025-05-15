@@ -1,0 +1,57 @@
+services:
+  app:
+    image: php:8.2-fpm
+    container_name: laravel_app
+    volumes:
+      - ./:/var/www/html
+    working_dir: /var/www/html
+    depends_on:
+        - mysql-contenedor
+    networks:
+      - laravel-network
+
+  nginx:
+    image: nginx:latest
+    container_name: laravel_nginx
+    ports:
+      - "8000:80"
+    volumes:
+      - ./:/var/www/html
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - app
+    networks:
+      - laravel-network
+
+  mysql-contenedor:
+    image: mysql:latest
+    container_name: mysql-contenedor
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345
+      MYSQL_DATABASE: laravel
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - laravel-network
+  phpmyadmin-contenedor:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin-contenedor
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: mysql-contenedor
+      PMA_PORT: 3306
+    depends_on:
+      - mysql-contenedor
+    networks:
+      - laravel-network
+
+volumes:
+  mysql-data:
+
+networks:
+  laravel-network:
+    driver: bridge
