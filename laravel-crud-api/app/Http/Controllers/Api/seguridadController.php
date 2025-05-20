@@ -41,15 +41,15 @@ class seguridadController extends Controller
         ], 201);
     }
 
-    public function show($id)
+    public function show($codigo_producto)
     {
-        $seguridad = Seguridad::findOrFail($id);
+        $seguridad = Seguridad::where('codigo_producto', $codigo_producto)->firstOrFail();
         return response()->json($seguridad);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $codigo_producto)
     {
-        $seguridad = Seguridad::findOrFail($id);
+        $seguridad = Seguridad::where('codigo_producto', $codigo_producto)->firstOrFail();
 
         $validated = $request->validate([
             'marca'=> 'sometimes|string|max:225',
@@ -61,19 +61,19 @@ class seguridadController extends Controller
         $seguridad -> update($validated);
 
         return response()->json([
-            'message'=> 'Herramienta de seguridad actualizado',
+            'message'=> 'Implemento de seguridad actualizado',
             'material' => $seguridad,
             'status'=> 'success'
         ], 200);
     }
 
-    public function destroy($id)
+    public function destroy($codigo_producto)
     {
-        $seguridad = Seguridad::findOrFail($id);
+        $seguridad = Seguridad::where('codigo_producto', $codigo_producto)->firstOrFail();
         $seguridad -> delete();
 
         return response()->json([
-            'message'=> 'Herramienta de seguridad destruida',
+            'message'=> 'Implemento de seguridad destruido',
             'status' => 'success'
         ], 200);
     }

@@ -41,15 +41,15 @@ class materialController extends Controller
         ], 201);
     }
 
-    public function show($id)
+    public function show($codigo_producto)
     {
-        $material = Material::findOrFail($id);
+        $material = Material::where('codigo_producto', $codigo_producto)->firstOrFail();
         return response()->json($material);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $codigo_producto)
     {
-        $material = Material::findOrFail($id);
+        $material = Material::where('codigo_producto', $codigo_producto)->firstOrFail();
 
         $validated = $request->validate([
             'marca'=> 'sometimes|string|max:225',
@@ -67,9 +67,10 @@ class materialController extends Controller
         ], 200);
     }
 
-    public function destroy($id)
+
+    public function destroy($codigo_producto)
     {
-        $material = Material::findOrFail($id);
+        $material = Material::where('codigo_producto', $codigo_producto)->firstOrFail();
         $material -> delete();
 
         return response()->json([

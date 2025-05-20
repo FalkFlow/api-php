@@ -40,15 +40,15 @@ class manualController extends Controller
         ], 201);
     }
 
-    public function show($id)
+    public function show($codigo_producto)
     {
-        $manual = Manual::findOrFail($id);
+        $manual = Manual::where('codigo_producto', $codigo_producto)->firstOrFail();
         return response()->json($manual);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $codigo_producto)
     {
-        $manual = Manual::findOrFail($id);
+        $manual = Manual::where('codigo_producto', $codigo_producto)->firstOrFail();
 
         $validated = $request->validate([
             'marca' => 'sometimes|string|max:255',
@@ -66,9 +66,9 @@ class manualController extends Controller
         ], 200);
     }
 
-    public function destroy($id)
+    public function destroy($codigo_producto)
     {
-        $manual = Manual::findOrFail($id);
+        $manual = Manual::where('codigo_producto', $codigo_producto)->firstOrFail();
         $manual->delete();
 
         return response()->json([
@@ -76,4 +76,5 @@ class manualController extends Controller
             'status' => 'success'
         ], 200);
     }
+    
 }
