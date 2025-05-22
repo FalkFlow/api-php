@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\manualController;
 use App\Http\Controllers\Api\materialController;
 use App\Http\Controllers\Api\seguridadController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\EmpleadoAuthController;
 
 
 
@@ -23,4 +24,12 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
     Route::post('/logout', [AuthController::class, 'logout']);
+});
+Route::prefix('empleado')->group(function () {
+    Route::post('/register', [EmpleadoAuthController::class, 'register']);
+    Route::post('/login', [EmpleadoAuthController::class, 'login']);
+
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::post('/logout', [EmpleadoAuthController::class, 'logout']);
+    });
 });
