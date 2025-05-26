@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\materialController;
 use App\Http\Controllers\Api\seguridadController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\EmpleadoAuthController;
+use App\Http\Controllers\Api\TransbankController;
 
 
 
@@ -33,3 +34,6 @@ Route::prefix('empleado')->group(function () {
         Route::post('/logout', [EmpleadoAuthController::class, 'logout']);
     });
 });
+Route::post('/transbank/create', [TransbankController::class, 'createTransaction']);
+Route::post('/transbank/callback', [TransbankController::class, 'commitTransaction'])->name('transbank.callback');
+
