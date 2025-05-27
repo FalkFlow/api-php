@@ -32,4 +32,9 @@ class Herramienta extends Model
     {
         return $this->belongsTo(Seguridad::class, 'codigo_producto', 'codigo_producto');
     }
+
+    public function sucursales()
+    {
+        return $this->hasMany(Sucursal::class, 'codigo_producto', 'codigo_producto');
+    }
 }

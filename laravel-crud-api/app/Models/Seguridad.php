@@ -17,7 +17,8 @@ class Seguridad extends Model
         "marca",
         "codigo",
         "nombre",
-        "precio"
+        "precio",
+        "stock"
     ];
     public function herramienta()
     {

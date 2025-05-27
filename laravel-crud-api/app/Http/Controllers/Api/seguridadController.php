@@ -23,6 +23,7 @@ class seguridadController extends Controller
             'codigo' => 'required|string|max:225',
             'nombre' => 'required|string|max:225',
             'precio' => 'required|numeric',
+            'stock' => 'required|integer|min:0',
         ]);
 
         if (Seguridad::where('codigo_producto', $validated['codigo_producto'])->exists()){

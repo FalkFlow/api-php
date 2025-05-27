@@ -22,6 +22,7 @@ class manualController extends Controller
             'codigo' => 'required|string|max:255',
             'nombre' => 'required|string|max:255',
             'precio' => 'required|numeric',
+            'stock' => 'required|integer|min:0',
         ]);
 
         if (Manual::where('codigo_producto', $validated['codigo_producto'])->exists()) {
@@ -55,6 +56,7 @@ class manualController extends Controller
             'codigo' => 'sometimes|string|max:255',
             'nombre' => 'sometimes|string|max:255',
             'precio' => 'sometimes|numeric',
+            'stock' => 'sometimes|integer|min:0',
         ]);
 
         $manual->update($validated);

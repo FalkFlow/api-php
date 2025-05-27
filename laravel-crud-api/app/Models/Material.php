@@ -16,7 +16,8 @@ class Material extends Model
         "marca",
         "codigo",
         "nombre",
-        "precio"
+        "precio",
+        "stock"
     ];
     public function herramienta()
     {

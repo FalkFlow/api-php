@@ -19,7 +19,8 @@ class Manual extends Model
         "marca",
         "codigo",
         "nombre",
-        "precio"
+        "precio",
+        "stock"
     ];
     public function herramienta()
     {
