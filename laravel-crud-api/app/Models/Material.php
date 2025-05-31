@@ -11,6 +11,9 @@ class Material extends Model
     use HasFactory;
 
     protected $table = "material";
+    protected $primaryKey = "codigo_producto";
+    public $incrementing = false;
+    protected $keyType = 'string';
     protected $fillable = [
         "codigo_producto",
         "marca",

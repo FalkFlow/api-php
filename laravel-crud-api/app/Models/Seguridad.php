@@ -11,6 +11,9 @@ class Seguridad extends Model
     use HasFactory;
 
     protected $table = "seguridad";
+    protected $primaryKey = "codigo_producto";
+    public $incrementing = false;
+    protected $keyType = 'string';
 
     protected $fillable = [
         "codigo_producto",

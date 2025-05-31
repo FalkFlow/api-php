@@ -57,6 +57,7 @@ class seguridadController extends Controller
             'codigo'=> 'sometimes|string|max:225',
             'nombre'=> 'sometimes|string|max:225',
             'precio'=> 'sometimes|numeric',
+            'stock'=> 'sometimes|numeric|min:0',
         ]);
 
         $seguridad -> update($validated);

@@ -48,7 +48,8 @@ class manualController extends Controller
     }
 
     public function update(Request $request, $codigo_producto)
-    {
+{
+    try {
         $manual = Manual::where('codigo_producto', $codigo_producto)->firstOrFail();
 
         $validated = $request->validate([
@@ -56,7 +57,7 @@ class manualController extends Controller
             'codigo' => 'sometimes|string|max:255',
             'nombre' => 'sometimes|string|max:255',
             'precio' => 'sometimes|numeric',
-            'stock' => 'sometimes|integer|min:0',
+            'stock' => 'sometimes|numeric|min:0',
         ]);
 
         $manual->update($validated);
@@ -66,7 +67,13 @@ class manualController extends Controller
             'manual' => $manual,
             'status' => 'success'
         ], 200);
+    } catch (\Exception $e) {
+        return response()->json([
+            'message' => 'Error al actualizar: ' . $e->getMessage(),
+            'status' => 'error'
+        ], 500);
     }
+}
 
     public function destroy($codigo_producto)
     {

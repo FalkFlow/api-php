@@ -19,7 +19,7 @@ class EmpleadoAuthController extends Controller
             'direccion' => 'required|string',
             'cargo' => 'required|string',
             'sueldo' => 'required|numeric',
-            'estado' => 'required|string'
+            'estado' => 'required|boolean'
         ]);
 
         $empleado = Empleado::create([

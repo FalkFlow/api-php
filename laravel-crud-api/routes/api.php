@@ -10,14 +10,23 @@ use App\Http\Controllers\Api\seguridadController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\EmpleadoAuthController;
 use App\Http\Controllers\Api\TransbankController;
-use App\Http\Controllers\SucursalController;
+use App\Http\Controllers\Api\SucursalController;
 
+# Transbank Routes
+Route::post('/transbank/create', [TransbankController::class, 'createTransaction']);
+Route::post('/transbank/callback', [TransbankController::class, 'callback'])->name('transbank.callback');
 
+# Sucursal Routes
+Route::post('/stock/descontar', [SucursalController::class, 'descontarStock']);
+Route::get('/sucursales/stock/{nombre}', [SucursalController::class, 'verStockSucursal']);
 
-Route::resource('herramientas', herramientasController::class)->except(['create', 'edit']);
-Route::resource('manuales', manualController::class)->except(['create', 'edit']);
-Route::resource('materiales', materialController::class)->except(['create','edit']);
-Route::resource('seguridades',seguridadController::class)->except(['create','edit']);
+# Resource Routes
+Route::resource('herramientas', herramientasController::class);
+Route::resource('manuales', manualController::class);
+Route::resource('materiales', materialController::class);
+Route::resource('seguridades',seguridadController::class);
+
+# Authentication Routes
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function () {
@@ -27,6 +36,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('/logout', [AuthController::class, 'logout']);
 });
+
+# Empleado Authentication Routes
 Route::prefix('empleado')->group(function () {
     Route::post('/register', [EmpleadoAuthController::class, 'register']);
     Route::post('/login', [EmpleadoAuthController::class, 'login']);
@@ -35,9 +46,9 @@ Route::prefix('empleado')->group(function () {
         Route::post('/logout', [EmpleadoAuthController::class, 'logout']);
     });
 });
-Route::post('/transbank/create', [TransbankController::class, 'createTransaction']);
-Route::post('/transbank/callback', [TransbankController::class, 'commitTransaction'])->name('transbank.callback');
-Route::get('/sucursales', [SucursalController::class, 'index']);
-Route::get('/sucursales/{codigo_producto}', [SucursalController::class, 'showByCodigo']);
+
+
+
+
 
 

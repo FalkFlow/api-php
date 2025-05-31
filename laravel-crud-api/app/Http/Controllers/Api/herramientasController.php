@@ -26,8 +26,8 @@ class herramientasController extends Controller
         $herramienta = Herramienta::findOrFail($id);
 
         $validated = $request->validate([
-            'recientes' => 'boolean',
-            'oferta' => 'boolean',
+            'recientes' => 'sometimes|boolean',
+            'oferta' => 'sometimes|boolean',
         ]);
 
         $herramienta->update($validated);

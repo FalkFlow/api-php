@@ -14,6 +14,11 @@ class Pago extends Model
         'amount',
         'status',
         'payment_type',
+        'card_number',
+        'authorization_code',
+        'response_code',
+        'transaction_date',
+        'session_id',
     ];
     
 }

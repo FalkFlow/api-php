@@ -23,7 +23,7 @@ class materialController extends Controller
             'codigo' => 'required|string|max:225',
             'nombre' => 'required|string|max:225',
             'precio' => 'required|numeric',
-            'stock' => 'required|integer|min:0',
+            'stock' => 'required|numeric|min:0',
         ]);
 
         if (Material::where('codigo_producto', $validated['codigo_producto'])->exists()){
@@ -57,6 +57,7 @@ class materialController extends Controller
             'codigo'=> 'sometimes|string|max:225',
             'nombre'=> 'sometimes|string|max:225',
             'precio'=> 'sometimes|numeric',
+            'stock'=> 'sometimes|numeric|min:0',
         ]);
 
         $material -> update($validated);
