@@ -99,7 +99,7 @@ class TransbankController extends Controller
             $pago->save();
         }
 
-        return $pago->response()->json([
+        return response()->json([
             'message' => 'Transacción exitosa',
             'status' => $response->getStatus(),
             'buy_order' => $response->getBuyOrder(),

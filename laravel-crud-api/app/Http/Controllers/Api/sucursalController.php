@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace app\Http\Controllers\Api;
 
 use App\Models\Sucursal;
 use Illuminate\Http\Request;
@@ -10,7 +10,7 @@ use App\Models\Manual;
 use App\Models\Seguridad;
 use App\Models\Sucursal as SucursalModel;
 
-class SucursalController extends Controller
+class sucursalController extends Controller
 {
 
     // Mostrar sucursales por código de producto
