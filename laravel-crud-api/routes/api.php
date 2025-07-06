@@ -17,10 +17,9 @@ Route::post('/transbank/create', [TransbankController::class, 'createTransaction
 Route::post('/transbank/callback', [TransbankController::class, 'callback'])->name('transbank.callback');
 
 # Sucursal Routes
-Route::middleware('auth.multi')->group(function (){
-    Route::post('/stock/descontar', [SucursalController::class, 'descontarStock']);
-    Route::get('/sucursales/stock/{nombre}', [SucursalController::class, 'verStockSucursal']);
-});
+Route::post('/stock/descontar', [SucursalController::class, 'descontarStock']);
+Route::get('/sucursales/stock/{nombre}', [SucursalController::class, 'verStockSucursal']);
+
 
 
 

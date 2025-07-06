@@ -64,7 +64,7 @@ class seguridadController extends Controller
 
         return response()->json([
             'message'=> 'Implemento de seguridad actualizado',
-            'material' => $seguridad,
+            'seguridad' => $seguridad,
             'status'=> 'success'
         ], 200);
     }

@@ -1,5 +1,6 @@
 FROM php:8.2-fpm
 
+# Instala dependencias del sistema necesarias
 RUN apt-get update && apt-get install -y \
     libpng-dev \
     libjpeg62-turbo-dev \
@@ -12,11 +13,15 @@ RUN apt-get update && apt-get install -y \
     libmariadb-dev \
     libmariadb-dev-compat \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install gd pdo pdo_mysql mysqli zip \
-    && docker-php-ext-install zip
+    && docker-php-ext-install \
+        gd \
+        pdo \
+        pdo_mysql \
+        mysqli \
+        zip \
+    # Limpieza para reducir tamaño de la imagen
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /var/www/html
+RUN docker-php-ext-install pdo pdo_mysql mysqli
 
-COPY . /var/www/html
-
-EXPOSE 9000
+WORKDIR /var/www/htmldocker exec -it laravel_app php -m | grep pdo_mysql
