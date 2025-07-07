@@ -139,4 +139,79 @@ php -m | grep pdo_mysql
 
 ```
 
+se adjunto el ambiente de pruebas se neceita instalar k6 y correrlo por terminal, no integrada en IDE.
+
+El funcioanmiento de la API es el siguiente.
+
+```html
+<!-- herramientas url -->
+dominio/api/herramientas <!-- ->metodo get entrega todas las herraminetas-->
+dominio/api/herramientas/codigo_producto <!-- -> metodo post entrega una herramienta en especifico--> 
+dominio/api/herramientas/codigo_producto <!-- -> metodo delete elimina una herramienta en especifico-->
+dominio/api/herramientas/codigo_producto <!-- -> metodo put modifica una herramienta en especifico-->  
+
+<!-- productos sive tanto para materiales-seguridades-manuales  se reemplaza producto por cualquira de los tipos mencionados antes-->
+dominio/api/producto <!-- -> metodo get entrega todos los elementos de la tabla-->
+dominio/api/producto/codigo_producto <!-- -> metodo post entrega un  elemento de la tabla-->
+dominio/api/producto/codigo_producto <!-- -> metodo delete elimina un  elemento de la tabla-->
+dominio/api/producto/codigo_producto <!-- -> metodo put modifica un  elemento de la tabla-->
+
+<!--ruta transbank -->
+dominio/api/trasnbank/create <!-- -> metodo POST se le entrega json 
+{
+    monto >= 50
+}
+-->
+dominio/api/transbank/callback <!-- -> metodo POST recoge el json de regreso desde webpay
+-->
+
+<!-- stock -->
+dominio/api/stock/descontar <!-- -> metodo POST requiere un json
+{
+    tipo -> debe ser material, manual o seguridad
+    codigo_producto -> codigo del producto
+    cantidad -> cantidad a descontar del stock
+    sucursal -> nombre de la sucursal
+}
+entrega un json con el resumen del traspaso 
+-->
+ dominio/api/sucursales/stock/{nombre} <!-- -> metodo POST requiere nombre de la sucursal entrega el stock de la sucursal consultada
+
+-->
+
+
+ <!-- inicio de sesion-->
+
+<!--basicamente son lo mismo solo uno tiene un json mas completo que el otro
+solo veremos uno para el otro caso solo se necesito agregar /api/employees/login o register
+-->
+
+dominio/api/login <!-- -> Metodo post requiere un json
+{
+    email -> correo
+    password -> contraseña
+}
+-->
+
+dominio/api/register <!-- -> Metodo post requiere un json
+{
+    name -> nombre
+    email -> correo
+    password -> contraseña
+    password_confirmation -> confirmacion de contraseña
+}
+-->
+dominio/api/user <!-- -> devuelve con get los datos del usuario -->
+
+<!-- divisas -->
+dominio/api/divisas/convertir <!-- -> metodo POST ncesita un json
+{
+    divisa -> nombre de la divisa abreviacion de conversion universal
+    monto -> cantidad a trasnformar
+} 
+
+funciona con api externa.
+-->
+```
+
 eso deberia bastar para correr el proyecto, no es necesario descargar las imagenes en Docker Hub para que funcione

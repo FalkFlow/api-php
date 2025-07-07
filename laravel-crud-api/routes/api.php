@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\EmpleadoAuthController;
 use App\Http\Controllers\Api\TransbankController;
 use App\Http\Controllers\Api\SucursalController;
+use App\Http\Controllers\Api\divisasController;
 
 # Transbank Routes
 Route::post('/transbank/create', [TransbankController::class, 'createTransaction']);
@@ -19,9 +20,6 @@ Route::post('/transbank/callback', [TransbankController::class, 'callback'])->na
 # Sucursal Routes
 Route::post('/stock/descontar', [SucursalController::class, 'descontarStock']);
 Route::get('/sucursales/stock/{nombre}', [SucursalController::class, 'verStockSucursal']);
-
-
-
 
 # Resource Routes
 Route::resource('herramientas', herramientasController::class);
@@ -49,6 +47,8 @@ Route::prefix('empleado')->group(function () {
         Route::post('/logout', [EmpleadoAuthController::class, 'logout']);
     });
 });
+
+Route::post('/divisas/convertir', [divisasController::class, 'convertir']);
 
 
 

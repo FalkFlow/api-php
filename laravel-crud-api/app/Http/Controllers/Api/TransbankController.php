@@ -27,7 +27,7 @@ class TransbankController extends Controller
     public function createTransaction(Request $request)
     {
         $request->validate([
-            'amount' => 'required|numeric|min:1000',
+            'amount' => 'required|numeric|min:50',
         ]);
 
         try {
