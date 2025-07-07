@@ -90,6 +90,10 @@ cd api-php
 
 # 2. Copian el .env por el que esta arriba
 
+# Correr lo siguiente en la terminal
+
+docker build -t laravel-image .
+
 docker-compose up -d
 docker exec -it laravel_app bash
 composer install
@@ -121,6 +125,18 @@ server{
         deny all;
     }
 }
+
+# en caso de que el dockerfile no se haya corrido
+# en la carpeta raiz del proyecto, abrir la terminal y ejecutar
+docker exec -it laravel_app bash
+apt-get update
+apt-get install -y libmariadb-dev libmariadb-dev-compat
+docker-php-ext-install pdo pdo_mysql
+# verificar que pdo haya sido instalado con lo siguiente
+php -m | grep pdo_mysql
+# reiniciar el contenedor
+# sin el pdo no sirve la base de datos no se contacta con la API y esto se cae 
+
 ```
 
-eso deberia bastar para correr el projecto, no es necesario descargar las imagenes en Docker Hub para que funcione
+eso deberia bastar para correr el proyecto, no es necesario descargar las imagenes en Docker Hub para que funcione
