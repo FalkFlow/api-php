@@ -144,7 +144,7 @@ se adjunto el ambiente de pruebas se neceita instalar k6 y correrlo por terminal
 El funcioanmiento de la API es el siguiente.
 
 ```html
-<!-- herramientas url -->
+<!-- herramientas url las hermmientas se crean de manera automatica al crear un producto -->
 dominio/api/herramientas <!-- ->metodo get entrega todas las herraminetas-->
 dominio/api/herramientas/codigo_producto <!-- -> metodo post entrega una herramienta en especifico--> 
 dominio/api/herramientas/codigo_producto <!-- -> metodo delete elimina una herramienta en especifico-->
@@ -152,9 +152,14 @@ dominio/api/herramientas/codigo_producto <!-- -> metodo put modifica una herrami
 
 <!-- productos sive tanto para materiales-seguridades-manuales  se reemplaza producto por cualquira de los tipos mencionados antes-->
 dominio/api/producto <!-- -> metodo get entrega todos los elementos de la tabla-->
+dominio/api/producto <!-- -> metodo POST se le entrega json con elementos de la tabla para crear el producto deben estar todos los elementos -->
 dominio/api/producto/codigo_producto <!-- -> metodo post entrega un  elemento de la tabla-->
 dominio/api/producto/codigo_producto <!-- -> metodo delete elimina un  elemento de la tabla-->
 dominio/api/producto/codigo_producto <!-- -> metodo put modifica un  elemento de la tabla-->
+
+<!-- 
+    los metodos put de estos deben ir con json que puede contener algun elemento al modificar 
+-->
 
 <!--ruta transbank -->
 dominio/api/trasnbank/create <!-- -> metodo POST se le entrega json 
